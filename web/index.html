@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 模擬面接</title>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/avatar.css">
+<link rel="stylesheet" href="/v3.css">
+<link rel="stylesheet" href="/v4.css">
+</head>
+<body data-screen="home">
+<svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <symbol id="i-es" viewBox="0 0 24 24"><path d="M7 3h8l4 4v14H7z M15 3v4h4 M10 12h6 M10 16h6"/></symbol>
+    <symbol id="i-door" viewBox="0 0 24 24"><path d="M6 3h10a1 1 0 0 1 1 1v17H5V4a1 1 0 0 1 1-1z M14 12h.5 M3 21h18"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M5 20v-9 M12 20V5 M19 20v-7 M3 20h18"/></symbol>
+    <symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 13V9 M9 2h6"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0 M12 18v3"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14 M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5 M12 8h.01"/></symbol>
+    <symbol id="i-exit" viewBox="0 0 24 24"><path d="M10 4H5v16h5 M15 8l4 4-4 4 M9 12h10"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+    <symbol id="i-lens" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21 M8 10.5h5 M10.5 8v5"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16 M8 3v4 M16 3v4 M8 14h2 M12 14h2 M8 17h2"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3L5 13.5h6L10 21l9-11.5h-6z"/></symbol>
+    <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></symbol>
+    <symbol id="i-interviewer" viewBox="0 0 120 120">
+      <path fill="#3b4350" d="M12 120c0-26 22-40 48-40s48 14 48 40z"/>
+      <path fill="#ffffff" d="M46 82l14 20 14-20z"/>
+      <path fill="#d8a24a" d="M56 92h8l3 22-7 6-7-6z"/>
+      <rect fill="#efcfb2" x="52" y="62" width="16" height="20" rx="6"/>
+      <ellipse fill="#f4d9bf" cx="60" cy="46" rx="21" ry="24"/>
+      <path fill="#2f3640" d="M38 44c-2-18 10-28 24-28 15 0 24 10 21 28-3-8-8-12-14-13-10 4-20 4-31 13z"/>
+      <circle fill="#2f3640" cx="51" cy="49" r="2.2"/><circle fill="#2f3640" cx="69" cy="49" r="2.2"/>
+      <path fill="none" stroke="#2f3640" stroke-width="2" stroke-linecap="round" d="M54 59q6 4 12 0"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="topbar">
+  <h1>AI 模擬面接</h1>
+  <nav aria-label="メニュー">
+    <button type="button" id="nav-home" class="link">ホーム</button>
+    <button type="button" id="nav-new" class="link">新しい面接</button>
+    <button type="button" id="nav-history" class="link">履歴</button>
+  </nav>
+</header>
+
+<main>
+  <section id="screen-home" class="screen" aria-labelledby="h-home">
+    <div id="home-desk" class="desk">
+      <h2 id="h-home" class="title"><span>AI 模擬面接</span></h2>
+      <img class="desk-img" src="/assets/home-desk.jpg" width="1600" height="900" alt="">
+      <p class="desk-guide">今日はどれから始めますか</p>
+      <button type="button" id="home-es" class="desk-card pos-es">
+        <svg class="ico" aria-hidden="true"><use href="#i-es"/></svg><b>ES を書く</b><svg class="ico arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        <span class="desc" id="home-es-desc">志望先と設問を書いて、添削を受けます</span>
+      </button>
+      <button type="button" id="home-interview" class="desk-card pos-interview">
+        <svg class="ico" aria-hidden="true"><use href="#i-door"/></svg><b>面接を始める</b><svg class="ico arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        <span class="desc" id="home-interview-desc">ES を添削したあと、AI の面接官と声で話します</span>
+      </button>
+      <button type="button" id="home-history" class="desk-card pos-history">
+        <svg class="ico" aria-hidden="true"><use href="#i-chart"/></svg><b>結果と履歴</b><svg class="ico arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        <span class="desc" id="home-history-desc">点数と、前回との差を見ます</span>
+      </button>
+      <button type="button" id="home-practice" class="desk-card pos-practice">
+        <svg class="ico" aria-hidden="true"><use href="#i-timer"/></svg><b>今日の練習</b><svg class="ico arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        <span class="desc" id="home-practice-desc">まず ES を書きましょう</span>
+      </button>
+    </div>
+    <div class="desk-sub" role="group" aria-label="練習の道具">
+      <button type="button" id="home-lens" class="sub-card">
+        <svg class="ico" aria-hidden="true"><use href="#i-lens"/></svg><b data-label="lens.name"></b>
+        <span class="desc" id="home-lens-desc" data-label="lens.desc"></span>
+      </button>
+      <button type="button" id="home-warmup" class="sub-card">
+        <svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg><b data-label="warmup.name"></b>
+        <span class="desc" id="home-warmup-desc" data-label="warmup.desc"></span>
+      </button>
+      <button type="button" id="home-gym" class="sub-card">
+        <svg class="ico" aria-hidden="true"><use href="#i-bolt"/></svg><b data-label="gym.name"></b>
+        <span class="desc" id="home-gym-desc" data-label="gym.desc"></span>
+      </button>
+    </div>
+    <button type="button" id="home-quick" class="quick-bar">
+      <svg class="ico" aria-hidden="true"><use href="#i-bolt"/></svg>
+      <b data-label="quick.name"></b>
+      <span class="desc" data-label="quick.desc"></span>
+      <svg class="ico arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+    </button>
+  </section>
+
+  <section id="screen-es" class="screen" aria-labelledby="h-es" hidden>
+    <h2 id="h-es" class="title"><span>エントリーシート</span></h2>
+    <p class="lead">入力した ES をもとに、添削と面接官の質問を準備します。設問は自由に増やしたり減らしたりできます。</p>
+    <div class="card quick-hint">
+      <div><b data-label="quick.name"></b><p class="small" data-label="quick.desc"></p></div>
+      <button type="button" id="es-to-quick">ESを書かずに始める</button>
+    </div>
+    <form id="es-form" autocomplete="off">
+      <fieldset class="card">
+        <legend>応募先</legend>
+        <div class="row3">
+          <label class="field">企業名<input id="f-company" name="company" type="text" maxlength="2000" required></label>
+          <label class="field">業界<input id="f-industry" name="industry" type="text" maxlength="2000" required></label>
+          <label class="field">職種<input id="f-role" name="role" type="text" maxlength="2000" required></label>
+        </div>
+      </fieldset>
+      <fieldset class="card">
+        <legend>面接の種類</legend>
+        <div id="mode-options" class="choices"></div>
+        <p id="mode-purpose" class="small"></p>
+      </fieldset>
+      <fieldset class="card">
+        <legend data-label="voice.name"></legend>
+        <div id="voice-options"></div>
+      </fieldset>
+      <fieldset class="card">
+        <legend>プラン</legend>
+        <div id="plan-options" class="choices"></div>
+        <p class="small">「じっくり」は、考える時間を長くして添削と採点をします（そのぶん時間がかかります）。結果の画面で、もう一方のプランでも採点して比べられます。</p>
+      </fieldset>
+      <section class="card" aria-labelledby="h-import">
+        <h3 id="h-import" class="q-title">PDF・画像から読み取る</h3>
+        <p class="small">手元の ES（PDF、PNG、JPG、WEBP、10MB まで）を読み取って、下の欄に下書きを入れます。読み間違いがないか確かめてから送ってください。</p>
+        <div class="import-row">
+          <input id="f-file" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,application/pdf,image/png,image/jpeg,image/webp" aria-label="読み取るファイル">
+          <button type="button" id="btn-extract">読み取って下書きを作る</button>
+        </div>
+        <div id="extract-progress" hidden></div>
+        <p id="extract-state" class="small" role="status"></p>
+      </section>
+      <div id="items"></div>
+      <div class="action-row">
+        <button type="button" id="btn-add-item">設問を追加</button>
+        <span id="items-note" class="small"></span>
+      </div>
+      <p id="es-error" class="error" role="alert" hidden></p>
+      <button type="submit" id="btn-submit-es" class="primary">ES を添削して準備する</button>
+    </form>
+  </section>
+
+  <section id="screen-review" class="screen" aria-labelledby="h-review" hidden>
+    <h2 id="h-review" class="title"><span>ES 添削</span></h2>
+    <div class="action-row">
+      <button type="button" id="btn-to-interview" class="primary">面接を始める</button>
+      <span id="review-state" class="muted" role="status"></span>
+    </div>
+    <div id="review-body"></div>
+  </section>
+
+  <section id="screen-interview" class="screen iv" aria-labelledby="h-interview" hidden>
+    <h2 id="h-interview" class="visually-hidden">面接</h2>
+    <div class="gym-bar" id="gym-bar" hidden>
+      <span class="sticker" id="gym-bar-label"></span>
+      <span class="small">圧は練習のための設定です。苦しくなったら、いつでも止められます。</span>
+      <button type="button" id="btn-stop" class="danger stop-btn"><svg class="ico" aria-hidden="true"><use href="#i-stop"/></svg>止める（減点なし）</button>
+    </div>
+    <div class="iv-top">
+      <ol id="steps" class="steps" aria-label="面接の進み具合"></ol>
+      <div class="timecard">
+        <svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg>
+        <div><span class="small">経過時間</span><b id="elapsed">00:00</b></div>
+      </div>
+    </div>
+    <div class="iv-window" id="iv-window">
+      <div class="av-stage" id="iv-avatar"></div>
+      <span class="iv-name">面接官（AI）</span>
+    </div>
+    <p id="interview-note" class="iv-note">マイクを使います。「開始」を押すと、面接官から話し始めます。</p>
+    <p id="interview-error" class="error" role="alert" hidden></p>
+    <div id="captions" class="captions" aria-live="polite"></div>
+    <div class="iv-dock">
+      <div class="dock-left"><span class="small">接続</span><b id="conn-state">未接続</b></div>
+      <div class="dock-mic">
+        <div class="mic" id="mic" data-state="idle"><svg class="ico" aria-hidden="true"><use href="#i-mic"/></svg></div>
+        <div class="mic-info">
+          <span id="mic-state" class="mic-state">待機中</span>
+          <span class="meter" id="mic-level" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+        </div>
+      </div>
+      <div class="dock-right">
+        <button type="button" id="btn-connect" class="primary">開始</button>
+        <button type="button" id="btn-end" class="danger" disabled><svg class="ico" aria-hidden="true"><use href="#i-exit"/></svg>終了</button>
+      </div>
+    </div>
+    <audio id="remote" autoplay></audio>
+    <dialog id="end-dialog" aria-labelledby="end-title">
+      <form method="dialog">
+        <h3 id="end-title">面接を終了しますか？</h3>
+        <p>終了すると、ここまでの会話を採点します。続きから再開はできません。</p>
+        <div class="dialog-actions">
+          <button type="submit" value="cancel" id="btn-end-cancel" autofocus>続ける</button>
+          <button type="submit" value="ok" id="btn-end-confirm" class="danger">終了して採点する</button>
+        </div>
+      </form>
+    </dialog>
+  </section>
+
+  <section id="screen-report" class="screen" aria-labelledby="h-report" hidden>
+    <h2 id="h-report" class="title"><span>結果</span></h2>
+    <div id="gym-end"></div>
+    <p id="report-wait" class="muted" role="status"></p>
+    <div id="report-actions"></div>
+    <div id="report-quota"></div>
+    <div id="gym-extra"></div>
+    <div id="report-progress" class="report-progress" hidden></div>
+    <div id="report-body"></div>
+  </section>
+
+  <section id="screen-quick" class="screen narrow" aria-labelledby="h-quick" hidden>
+    <h2 id="h-quick" class="title"><span data-label="quick.heading"></span></h2>
+    <div id="quick-body"></div>
+  </section>
+
+  <section id="screen-survey" class="screen narrow" aria-labelledby="h-survey" hidden>
+    <h2 id="h-survey" class="title"><span>2分のアンケート</span></h2>
+    <div id="survey-body"></div>
+  </section>
+
+  <section id="screen-plans" class="screen narrow" aria-labelledby="h-plans" hidden>
+    <h2 id="h-plans" class="title"><span>プラン（準備中）</span></h2>
+    <div id="plans-body"></div>
+  </section>
+
+  <section id="screen-history" class="screen" aria-labelledby="h-history" hidden>
+    <h2 id="h-history" class="title"><span>履歴</span></h2>
+    <div id="history-body"></div>
+  </section>
+  <section id="screen-lens" class="screen narrow" aria-labelledby="h-lens" hidden>
+    <h2 id="h-lens" class="title"><span data-label="lens.heading"></span></h2>
+    <div id="lens-body"></div>
+  </section>
+
+  <section id="screen-warmup" class="screen narrow" aria-labelledby="h-warmup" hidden>
+    <h2 id="h-warmup" class="title"><span data-label="warmup.heading"></span></h2>
+    <div id="warmup-body"></div>
+  </section>
+
+  <section id="screen-gym" class="screen narrow" aria-labelledby="h-gym" hidden>
+    <h2 id="h-gym" class="title"><span data-label="gym.heading"></span></h2>
+    <div id="gym-body"></div>
+  </section>
+</main>
+<script src="/app.js" type="module"></script>
+</body>
+</html>

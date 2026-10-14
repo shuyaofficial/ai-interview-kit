@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "score",
+    "quote",
+    "good",
+    "improve",
+    "modelAnswer"
+  ],
+  "properties": {
+    "score": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "quote": {
+      "type": "string"
+    },
+    "good": {
+      "type": "string"
+    },
+    "improve": {
+      "type": "string"
+    },
+    "modelAnswer": {
+      "type": "string"
+    }
+  }
+}

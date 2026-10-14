@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>面接官アバター デモ</title>
+<link rel="stylesheet" href="/avatar.css">
+<link rel="stylesheet" href="/avatar-demo.css">
+</head>
+<body>
+<main>
+  <h1>面接官アバター デモ</h1>
+  <div id="stage"></div>
+  <div class="row" id="states" role="group" aria-label="状態">
+    <button type="button" data-state="idle" aria-pressed="true">待機</button>
+    <button type="button" data-state="listening" aria-pressed="false">聞いている</button>
+    <button type="button" data-state="speaking" aria-pressed="false">話している</button>
+    <button type="button" data-state="thinking" aria-pressed="false">考えている</button>
+    <button type="button" data-state="nodding" aria-pressed="false">うなずき</button>
+  </div>
+  <div class="row">
+    <label for="level">音量（speaking の口）
+      <input id="level" type="range" min="0" max="1" step="0.01" value="0.4">
+    </label>
+    <output id="level-out" for="level">0.40</output>
+    <button type="button" id="auto" aria-pressed="false">音量を自動で揺らす</button>
+  </div>
+</main>
+<script type="module" src="/avatar-demo.js"></script>
+</body>
+</html>

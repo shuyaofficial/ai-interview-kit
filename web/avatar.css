@@ -1,0 +1,70 @@
+/* 面接官アバター専用。動きは transform と opacity だけ（DESIGN.md: 過度なアニメ禁止）。 */
+.av-root { display: block; }
+
+/* うなずきと傾きの支点は首のあたり（SVG 要素は viewBox 基準の座標） */
+.av-head { transform-origin: 200px 215px; transition: transform 220ms ease; }
+.av-s-thinking .av-head { transform: rotate(-3deg) translate(-2px, 0); }
+.av-s-nodding .av-head { animation: av-nod 1000ms ease-in-out; }
+.av-nod-soft .av-head { animation: av-nod-soft 1400ms ease-in-out; }
+
+@keyframes av-nod {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(9px) rotate(2deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(8px) rotate(1.5deg); }
+}
+@keyframes av-nod-soft {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  45% { transform: translateY(4px) rotate(1deg); }
+}
+
+/* 目: 開き目と笑い目を切り替える。視線は thinking で少し上へ */
+.av-eyes-open, .av-eyes-happy, .av-brow, .av-spark, .av-hand-l, .av-arm-think {
+  transition: opacity 180ms ease, transform 200ms ease;
+}
+.av-eyes-happy { opacity: 0; }
+.av-s-nodding .av-eyes-happy { opacity: 1; }
+.av-s-nodding .av-eyes-open { opacity: 0; }
+
+.av-gaze { transition: transform 200ms ease; }
+.av-s-thinking .av-gaze { transform: translate(6px, -7px); }
+
+.av-eye { transform-box: fill-box; transform-origin: center; }
+.av-blinking .av-eye { animation: av-blink 180ms ease-in-out; }
+@keyframes av-blink {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.08); }
+}
+
+.av-brow { transform-box: fill-box; transform-origin: center; }
+.av-s-thinking .av-brow-r { transform: translateY(-5px) rotate(-6deg); }
+.av-s-thinking .av-brow-l { transform: translateY(1px); }
+
+/* 口: 形を opacity で切り替える。クロスフェードさせず即時 */
+.av-mouth { opacity: 0; }
+.av-root .av-mouth-smile { opacity: 1; }
+.av-s-thinking .av-mouth-smile { opacity: 0; }
+.av-s-thinking .av-mouth-think { opacity: 1; }
+.av-s-speaking.av-m1 .av-mouth-smile,
+.av-s-speaking.av-m2 .av-mouth-smile,
+.av-s-speaking.av-m3 .av-mouth-smile { opacity: 0; }
+.av-s-speaking.av-m1 .av-mouth-1,
+.av-s-speaking.av-m2 .av-mouth-2,
+.av-s-speaking.av-m3 .av-mouth-3 { opacity: 1; }
+
+/* 考えている: 左手を引っ込め、あごに当てる腕を出す */
+.av-arm-think { opacity: 0; transform: translateY(14px); }
+.av-s-thinking .av-arm-think { opacity: 1; transform: translateY(0); }
+.av-s-thinking .av-hand-l { opacity: 0; }
+
+/* 黄色の合図（聞いている=左、話している=右、うなずき=弧） */
+.av-spark { opacity: 0; }
+.av-s-listening .av-spark-l,
+.av-s-speaking .av-spark-r,
+.av-s-nodding .av-spark-arc { opacity: 1; }
+
+/* まばたき以外を止める */
+@media (prefers-reduced-motion: reduce) {
+  .av-root * { transition: none !important; animation: none !important; }
+  .av-root.av-blinking .av-eye { animation: av-blink 180ms ease-in-out !important; }
+}

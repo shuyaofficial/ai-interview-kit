@@ -1,0 +1,78 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["axes", "questions", "overall", "compliance"],
+  "properties": {
+    "axes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["axis", "score", "reason", "evidence"],
+        "properties": {
+          "axis": { "type": "string", "enum": ["structure", "specificity", "ownership", "consistency", "motivation", "responsiveness"] },
+          "score": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "reason": { "type": "string" },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["turn", "quote"],
+              "properties": {
+                "turn": { "type": "integer" },
+                "quote": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["questionTurn", "question", "score", "quote", "good", "improve", "modelAnswer"],
+        "properties": {
+          "questionTurn": { "type": "integer" },
+          "question": { "type": "string" },
+          "score": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "quote": { "type": "string" },
+          "good": { "type": "string" },
+          "improve": { "type": "string" },
+          "modelAnswer": { "type": "string" }
+        }
+      }
+    },
+    "overall": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary", "nextPractice"],
+      "properties": {
+        "summary": { "type": "string" },
+        "nextPractice": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "compliance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["violations"],
+      "properties": {
+        "violations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["turn", "quote", "topic"],
+            "properties": {
+              "turn": { "type": "integer" },
+              "quote": { "type": "string" },
+              "topic": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

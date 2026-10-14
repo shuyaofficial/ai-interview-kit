@@ -1,0 +1,63 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "themes"
+  ],
+  "properties": {
+    "themes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "theme",
+          "count",
+          "quotes",
+          "cause",
+          "fix",
+          "effort",
+          "priority"
+        ],
+        "properties": {
+          "theme": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "quotes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "cause": {
+            "type": "string"
+          },
+          "fix": {
+            "type": "string"
+          },
+          "effort": {
+            "type": "string",
+            "enum": [
+              "小",
+              "中",
+              "大"
+            ]
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "高",
+              "中",
+              "低"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+/* デモページの見た目。CSP が style 要素を許さないため外部ファイルにしてある。 */
+body { margin: 0; background: #fcfbf9; color: #1f2328; font: 15px/1.5 system-ui, "Hiragino Sans", sans-serif; }
+main { box-sizing: border-box; max-width: 720px; height: 100vh; margin: 0 auto; padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
+h1 { font-size: 16px; margin: 0; }
+#stage { flex: 1; min-height: 0; background: #fdf1c7; border: 1px solid #e6e1d6; border-radius: 16px; overflow: hidden; }
+.row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+button { font: inherit; padding: 4px 12px; border: 1px solid #e6e1d6; border-radius: 999px; background: #fff; color: #1f2328; cursor: pointer; }
+button[aria-pressed="true"] { background: #f7c948; border-color: #1f2328; }
+label { display: flex; gap: 8px; align-items: center; }
+output { min-width: 3em; font-variant-numeric: tabular-nums; }

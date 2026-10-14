@@ -1,0 +1,87 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "rebuttals",
+    "summary"
+  ],
+  "properties": {
+    "rebuttals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "turn",
+          "question",
+          "fact",
+          "responsibility",
+          "update",
+          "comment"
+        ],
+        "properties": {
+          "turn": {
+            "type": "integer"
+          },
+          "question": {
+            "type": "string"
+          },
+          "fact": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "met",
+              "quote"
+            ],
+            "properties": {
+              "met": {
+                "type": "boolean"
+              },
+              "quote": {
+                "type": "string"
+              }
+            }
+          },
+          "responsibility": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "met",
+              "quote"
+            ],
+            "properties": {
+              "met": {
+                "type": "boolean"
+              },
+              "quote": {
+                "type": "string"
+              }
+            }
+          },
+          "update": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "met",
+              "quote"
+            ],
+            "properties": {
+              "met": {
+                "type": "boolean"
+              },
+              "quote": {
+                "type": "string"
+              }
+            }
+          },
+          "comment": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "default": "standard",
+  "plans": {
+    "standard": {
+      "label": "ふつう",
+      "price": "",
+      "provider": "codex",
+      "effort": "low"
+    },
+    "premium": {
+      "label": "じっくり",
+      "price": "",
+      "provider": "codex",
+      "effort": "medium"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["items", "plan"],
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "scores", "comments", "rewrite"],
+        "properties": {
+          "field": { "type": "string", "enum": ["gakuchika", "selfPr", "motivation"] },
+          "scores": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["prep", "specificity", "length"],
+            "properties": {
+              "prep": { "type": "integer", "minimum": 1, "maximum": 5 },
+              "specificity": { "type": "integer", "minimum": 1, "maximum": 5 },
+              "length": { "type": "integer", "minimum": 1, "maximum": 5 }
+            }
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["quote", "issue", "suggestion"],
+              "properties": {
+                "quote": { "type": "string" },
+                "issue": { "type": "string" },
+                "suggestion": { "type": "string" }
+              }
+            }
+          },
+          "rewrite": { "type": "string" }
+        }
+      }
+    },
+    "plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["focusPoints"],
+      "properties": {
+        "focusPoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["topic", "why", "probes"],
+            "properties": {
+              "topic": { "type": "string" },
+              "why": { "type": "string" },
+              "probes": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    }
+  }
+}

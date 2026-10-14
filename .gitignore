@@ -1,0 +1,13 @@
+# 自分の ES・面接の記録・点数（公開しない）
+data/
+# 依存パッケージ
+node_modules/
+# API キーなどの設定
+.env
+.env.*
+# ログ
+*.log
+logs/
+# OS が作るファイル
+.DS_Store
+Thumbs.db
